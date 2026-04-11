@@ -35,7 +35,8 @@ if (hamburger) {
 // Close menu on link click
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
-    if (navLinksContainer.style.display === "flex") {
+    // Only close the menu if we're on mobile (hamburger is visible)
+    if (window.innerWidth <= 768) {
       navLinksContainer.style.display = "none";
     }
   });
