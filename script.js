@@ -271,7 +271,17 @@ const resumeDownloadLinks = document.querySelectorAll(
   'a[href*="CV_Suman_Phuyal"][download]',
 );
 resumeDownloadLinks.forEach((link) => {
-  link.addEventListener("click", () => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    // Create a temporary anchor element to trigger the download
+    const downloadLink = document.createElement("a");
+    downloadLink.href = link.getAttribute("href");
+    downloadLink.download = "CV_Suman_Phuyal_V3.pdf";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+
     // Track download with analytics (optional - can be used with Google Analytics, Mixpanel, etc.)
     if (typeof gtag !== "undefined") {
       gtag("event", "file_download", {
@@ -282,9 +292,6 @@ resumeDownloadLinks.forEach((link) => {
 
     // Optional: Log to console for testing
     console.log("Resume downloaded: CV_Suman_Phuyal_V3.pdf");
-
-    // Optional: Show a subtle notification (you can uncomment if you want)
-    // showDownloadNotification();
   });
 });
 
