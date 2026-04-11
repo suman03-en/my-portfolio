@@ -55,13 +55,34 @@ my-portfolio/
 
 ### Sections Included
 
-1. **Hero** - Welcome statement with CTA buttons
+1. **Hero** - Welcome statement with CTA buttons + Resume download
 2. **About** - Personal introduction with statistics
 3. **Experience** - Timeline of work experience
 4. **Projects** - Featured projects with technology stack
 5. **Skills** - Technical arsenal categorized
-6. **Education & Achievements** - Academic background and awards
-7. **Contact** - Multiple ways to connect
+6. **Resume** - Professional resume preview and download section
+7. **Education & Achievements** - Academic background and awards
+8. **Contact** - Multiple ways to connect
+
+## 📄 Resume Download Feature
+
+The portfolio includes multiple convenient ways to download your resume:
+
+### Download Options
+
+- **Navbar Resume Button**: Fixed position in the navigation bar with download icon
+- **Hero CTA Button**: Prominent download button in the hero section
+- **Dedicated Resume Section**: Full-featured resume preview with:
+  - Professional file icon and description
+  - Highlighted resume contents (Education, Experience, Skills, Achievements)
+  - Large download button with visual emphasis
+  - File metadata (format, last updated date)
+
+### How to Use
+
+1. Replace `CV_Suman_Phuyal_V3.pdf` with your actual resume file
+2. Both download links will automatically work if the file exists in the project root
+3. Download tracking is built-in (optional Google Analytics integration)
 
 ## 💻 How to Use
 

@@ -264,3 +264,88 @@ document.addEventListener("keydown", (e) => {
 document.addEventListener("mousedown", () => {
   document.body.classList.remove("keyboard-nav");
 });
+
+// Track resume downloads
+const resumeDownloadLinks = document.querySelectorAll(
+  'a[href*="CV_Suman_Phuyal"][download]',
+);
+resumeDownloadLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    // Track download with analytics (optional - can be used with Google Analytics, Mixpanel, etc.)
+    if (typeof gtag !== "undefined") {
+      gtag("event", "file_download", {
+        file_name: "CV_Suman_Phuyal_V3.pdf",
+        file_extension: "pdf",
+      });
+    }
+
+    // Optional: Log to console for testing
+    console.log("Resume downloaded: CV_Suman_Phuyal_V3.pdf");
+
+    // Optional: Show a subtle notification (you can uncomment if you want)
+    // showDownloadNotification();
+  });
+});
+
+// Optional: Add animation to resume preview when it comes into view
+const resumePreview = document.querySelector(".resume-preview");
+if (resumePreview) {
+  const resumeObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = "slideInLeft 0.6s ease forwards";
+          resumeObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 },
+  );
+
+  resumeObserver.observe(resumePreview);
+}
+
+// Add slide-in animation style
+const slideInStyle = document.createElement("style");
+slideInStyle.textContent = `
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+`;
+document.head.appendChild(slideInStyle);
+
+// Animate resume download section
+const resumeDownloadSection = document.querySelector(".resume-download");
+if (resumeDownloadSection) {
+  const downloadObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = "slideInRight 0.6s ease forwards";
+          downloadObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 },
+  );
+
+  downloadObserver.observe(resumeDownloadSection);
+}
