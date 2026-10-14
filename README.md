@@ -27,17 +27,18 @@ Text Muted:         #94a3b8 (Subtle Gray)
 
 ```
 my-portfolio/
-├── index.html      # Main HTML structure & content
-├── styles.css      # Complete styling with animations & responsive design
-├── script.js       # Interactive features & smooth transitions
-└── README.md       # This file
+├── index.html          # Main HTML structure & content
+├── styles.css          # Complete styling with animations & responsive design
+├── script.js           # Interactive features & smooth transitions
+├── profile-photo.svg    # Hero portrait asset (replace with a headshot if desired)
+└── README.md           # This file
 ```
 
 ## 🚀 Features
 
 ### Visual Elements
 
-- **Animated Hero Section** with floating blobs and staggered text
+- **Focused Hero Section** with portrait, intro, and clear calls to action
 - **Smooth Navigation Bar** with active link highlighting
 - **Timeline Layout** for experience chronology
 - **Gradient Accents** throughout for visual appeal
@@ -61,7 +62,7 @@ my-portfolio/
 4. **Projects** - Featured projects with technology stack
 5. **Skills** - Technical arsenal categorized
 6. **Resume** - Professional resume preview and download section
-7. **Education & Achievements** - Academic background and awards
+7. **Education** - Academic background
 8. **Contact** - Multiple ways to connect
 
 ## 📄 Resume Download Feature
@@ -74,7 +75,7 @@ The portfolio includes multiple convenient ways to download your resume:
 - **Hero CTA Button**: Prominent download button in the hero section
 - **Dedicated Resume Section**: Full-featured resume preview with:
   - Professional file icon and description
-  - Highlighted resume contents (Education, Experience, Skills, Achievements)
+  - Highlighted resume contents (Education, Experience, Skills, Projects)
   - Large download button with visual emphasis
   - File metadata (format, last updated date)
 

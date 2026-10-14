@@ -15,7 +15,7 @@
     <nav class="navbar">
       <div class="nav-container">
         <div class="logo">
-          <span class="logo-text">SP</span>
+          <a href="#home" class="logo-text">Suman Phuyal</a>
         </div>
         <ul class="nav-links">
           <li><a href="#home">Home</a></li>
@@ -41,27 +41,39 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-      <div class="hero-content">
-        <h1 class="hero-title">
-          <span class="word">Building</span>
-          <span class="word accent-cyan">Scalable</span>
-          <span class="word">Backend</span>
-          <span class="word accent-purple">Systems</span>
-        </h1>
-        <p class="hero-subtitle">
-          Full-stack Python developer | Django specialist | Real-time systems
-          architect
-        </p>
-        <div class="hero-cta">
-          <a href="#projects" class="btn btn-primary">View My Work</a>
-          <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-          <a href="./CV_Suman_Phuyal_V3.pdf" download class="btn btn-resume">
-            <i class="fas fa-file-download"></i> Download Resume
-          </a>
+      <div class="container hero-layout">
+        <div class="hero-content">
+          <p class="hero-name">Suman Phuyal</p>
+          <p class="eyebrow">Backend developer · Kathmandu, Nepal</p>
+          <h1 class="hero-title">
+            <span class="word">Building</span>
+            <span class="word accent-cyan">reliable</span>
+            <span class="word">digital</span>
+            <span class="word accent-purple">products.</span>
+          </h1>
+          <p class="hero-subtitle">
+            I design and build thoughtful backend systems, APIs, and real-time
+            experiences with Python and Django.
+          </p>
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary">View my work</a>
+            <a href="#contact" class="btn btn-secondary">Get in touch</a>
+            <a href="./CV_Suman_Phuyal_V3.pdf" download class="btn btn-resume">
+              <i class="fas fa-file-download"></i> Resume
+            </a>
+          </div>
+          <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <i class="fas fa-arrow-down"></i>
+          </div>
         </div>
-        <div class="scroll-indicator">
-          <span>Scroll to explore</span>
-          <i class="fas fa-arrow-down"></i>
+        <div class="hero-portrait">
+          <div class="portrait-frame">
+            <img
+              src="./suman_phuyal_photo.jpeg"
+              alt="Portrait of Suman Phuyal"
+            />
+          </div>
         </div>
       </div>
       <div class="hero-background">
@@ -104,10 +116,6 @@
             <div class="stat">
               <div class="stat-number">1+</div>
               <div class="stat-label">Years Experience</div>
-            </div>
-            <div class="stat">
-              <div class="stat-number">89%</div>
-              <div class="stat-label">Semester Topper</div>
             </div>
             <div class="stat">
               <div class="stat-number">4</div>
@@ -194,6 +202,33 @@
         <div class="projects-grid">
           <!-- Project 1 -->
           <div class="project-card">
+            <div class="project-header accent-purple">
+              <i class="fab fa-discord"></i>
+            </div>
+            <h3>Teacher2Discord</h3>
+            <p class="project-subtitle">Class Announcement Platform</p>
+            <p class="project-description">
+              Broadcast class announcements, assignments, and files directly
+              to student Discord servers using webhooks.
+            </p>
+            <div class="project-tech">
+              <span>Django</span>
+              <span>PostgreSQL</span>
+              <span>Discord Webhooks</span>
+            </div>
+            <a
+              href="https://teacher2discord.onrender.com"
+              class="project-status project-link accent-purple"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View live website
+              <i class="fas fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card">
             <div class="project-header accent-cyan">
               <i class="fas fa-users"></i>
             </div>
@@ -214,7 +249,7 @@
             <div class="project-status accent-cyan">Active</div>
           </div>
 
-          <!-- Project 2 -->
+          <!-- Project 3 -->
           <div class="project-card">
             <div class="project-header accent-purple">
               <i class="fas fa-graduation-cap"></i>
@@ -235,7 +270,7 @@
             <div class="project-status accent-purple">Live</div>
           </div>
 
-          <!-- Project 3 -->
+          <!-- Project 4 -->
           <div class="project-card">
             <div class="project-header accent-cyan">
               <i class="fas fa-server"></i>
@@ -255,6 +290,7 @@
             </div>
             <div class="project-status accent-cyan">2024</div>
           </div>
+
         </div>
       </div>
     </section>
@@ -263,9 +299,19 @@
     <section id="skills" class="skills">
       <div class="container">
         <h2 class="section-title">Technical Arsenal</h2>
+        <p class="section-intro">
+          A focused toolkit for building dependable, scalable, and maintainable
+          web applications.
+        </p>
         <div class="skills-grid">
           <div class="skill-category">
-            <h3><i class="fas fa-code"></i> Languages</h3>
+            <div class="skill-category-heading">
+              <span class="skill-icon"><i class="fas fa-code"></i></span>
+              <div>
+                <p class="skill-kicker">01 / Core</p>
+                <h3>Languages</h3>
+              </div>
+            </div>
             <div class="skill-list">
               <div class="skill-item">Python</div>
               <div class="skill-item">JavaScript</div>
@@ -276,7 +322,13 @@
           </div>
 
           <div class="skill-category">
-            <h3><i class="fas fa-cube"></i> Frameworks</h3>
+            <div class="skill-category-heading">
+              <span class="skill-icon"><i class="fas fa-cube"></i></span>
+              <div>
+                <p class="skill-kicker">02 / Build</p>
+                <h3>Frameworks</h3>
+              </div>
+            </div>
             <div class="skill-list">
               <div class="skill-item">Django</div>
               <div class="skill-item">Django Channels</div>
@@ -287,7 +339,13 @@
           </div>
 
           <div class="skill-category">
-            <h3><i class="fas fa-wrench"></i> Tools & DevOps</h3>
+            <div class="skill-category-heading">
+              <span class="skill-icon"><i class="fas fa-wrench"></i></span>
+              <div>
+                <p class="skill-kicker">03 / Ship</p>
+                <h3>Tools & DevOps</h3>
+              </div>
+            </div>
             <div class="skill-list">
               <div class="skill-item">Docker</div>
               <div class="skill-item">PostgreSQL</div>
@@ -298,7 +356,13 @@
           </div>
 
           <div class="skill-category">
-            <h3><i class="fas fa-brain"></i> ML & Data</h3>
+            <div class="skill-category-heading">
+              <span class="skill-icon"><i class="fas fa-brain"></i></span>
+              <div>
+                <p class="skill-kicker">04 / Explore</p>
+                <h3>ML & Data</h3>
+              </div>
+            </div>
             <div class="skill-list">
               <div class="skill-item">NumPy</div>
               <div class="skill-item">Pandas</div>
@@ -310,80 +374,41 @@
       </div>
     </section>
 
-    <!-- Education & Achievements -->
+    <!-- Education -->
     <section id="education" class="education">
       <div class="container">
-        <div class="ed-achievements-wrapper">
-          <!-- Education -->
-          <div class="education-section">
-            <h2 class="section-title">Education</h2>
-            <div class="education-list">
-              <div class="education-item">
-                <div class="education-icon accent-cyan">
-                  <i class="fas fa-graduation-cap"></i>
-                </div>
-                <div>
-                  <h3>
-                    Bachelor of Electronics, Communication & Information
-                    Engineering
-                  </h3>
-                  <p class="education-institute">
-                    Institute of Engineering, Thapathali Campus
-                  </p>
-                  <p class="education-duration">
-                    2023 - 2027 (Expected) | Kathmandu, Nepal
-                  </p>
-                </div>
-              </div>
-
-              <div class="education-item">
-                <div class="education-icon accent-purple">
-                  <i class="fas fa-book"></i>
-                </div>
-                <div>
-                  <h3>Higher Secondary (+2 Science)</h3>
-                  <p class="education-institute">
-                    Xavier International College | CGPA: 3.67
-                  </p>
-                  <p class="education-duration">
-                    2021 - 2023 | Kathmandu, Nepal
-                  </p>
-                </div>
-              </div>
+        <h2 class="section-title">Education</h2>
+        <div class="education-list">
+          <div class="education-item">
+            <div class="education-icon accent-cyan">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div>
+              <h3>
+                Bachelor of Electronics, Communication & Information
+                Engineering
+              </h3>
+              <p class="education-institute">
+                Institute of Engineering, Thapathali Campus
+              </p>
+              <p class="education-duration">
+                2023 - 2027 (Expected) | Kathmandu, Nepal
+              </p>
             </div>
           </div>
 
-          <!-- Achievements -->
-          <div class="achievements-section">
-            <h2 class="section-title">Achievements</h2>
-            <div class="achievements-list">
-              <div class="achievement-item">
-                <div class="achievement-icon accent-cyan">
-                  <i class="fas fa-trophy"></i>
-                </div>
-                <div>
-                  <h3>Department Topper</h3>
-                  <p>
-                    Achieved the highest marks in Fourth Semester with a score
-                    of <span class="highlight">89%</span> (2025)
-                  </p>
-                </div>
-              </div>
-
-              <div class="achievement-item">
-                <div class="achievement-icon accent-purple">
-                  <i class="fas fa-medal"></i>
-                </div>
-                <div>
-                  <h3>Golden Jubilee Scholarship</h3>
-                  <p>
-                    Awarded by the Embassy of India, Kathmandu. Selected as one
-                    of the top
-                    <span class="highlight">merit-based scholars</span> in Nepal
-                    (2023)
-                  </p>
-                </div>
-              </div>
+          <div class="education-item">
+            <div class="education-icon accent-purple">
+              <i class="fas fa-book"></i>
+            </div>
+            <div>
+              <h3>Higher Secondary (+2 Science)</h3>
+              <p class="education-institute">
+                Xavier International College | CGPA: 3.67
+              </p>
+              <p class="education-duration">
+                2021 - 2023 | Kathmandu, Nepal
+              </p>
             </div>
           </div>
         </div>
@@ -402,13 +427,12 @@
             <h3>Comprehensive Resume</h3>
             <p>
               Download my complete resume to view detailed information about my
-              education, experience, projects, technical skills, and
-              achievements.
+              education, experience, projects, and technical skills.
             </p>
             <div class="resume-highlights">
               <div class="highlight-item">
                 <i class="fas fa-graduation-cap"></i>
-                <span>Education & Achievements</span>
+                <span>Education</span>
               </div>
               <div class="highlight-item">
                 <i class="fas fa-briefcase"></i>
@@ -420,7 +444,7 @@
               </div>
               <div class="highlight-item">
                 <i class="fas fa-star"></i>
-                <span>Projects & Achievements</span>
+                <span>Selected projects</span>
               </div>
             </div>
           </div>

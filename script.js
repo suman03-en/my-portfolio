@@ -92,7 +92,7 @@ const observer = new IntersectionObserver((entries) => {
 // Observe cards and items
 document
   .querySelectorAll(
-    ".project-card, .skill-category, .stat, .education-item, .achievement-item",
+    ".project-card, .skill-category, .stat, .education-item",
   )
   .forEach((el) => {
     el.style.opacity = "0";
@@ -135,23 +135,16 @@ timelineItems.forEach((item, index) => {
 // Counter animation for stats
 function animateCounter(element, target, duration = 2000) {
   let start = 0;
+  const suffix = element.textContent.replace(String(target), "");
   const increment = target / (duration / 16);
 
   const updateCounter = () => {
     start += increment;
     if (start < target) {
-      element.textContent =
-        Math.floor(start) +
-        (element.textContent.includes("+")
-          ? "+"
-          : element.textContent.slice(-1));
+      element.textContent = Math.floor(start) + suffix;
       requestAnimationFrame(updateCounter);
     } else {
-      element.textContent =
-        target +
-        (element.textContent.includes("+")
-          ? "+"
-          : element.textContent.slice(-1));
+      element.textContent = target + suffix;
     }
   };
 
