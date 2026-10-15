@@ -24,6 +24,30 @@ window.addEventListener("scroll", updateActiveNav);
 // Hamburger menu toggle
 const hamburger = document.querySelector(".hamburger");
 const navLinksContainer = document.querySelector(".nav-links");
+const themeToggle = document.querySelector(".theme-toggle");
+
+function updateThemeToggle(theme) {
+  const isLight = theme === "light";
+  themeToggle.setAttribute(
+    "aria-label",
+    isLight ? "Switch to dark mode" : "Switch to light mode",
+  );
+  themeToggle.setAttribute("aria-pressed", String(isLight));
+  themeToggle.innerHTML = `<i class="fas fa-${isLight ? "moon" : "sun"}" aria-hidden="true"></i>`;
+}
+
+if (themeToggle) {
+  const currentTheme = document.documentElement.dataset.theme || "light";
+  updateThemeToggle(currentTheme);
+
+  themeToggle.addEventListener("click", () => {
+    const nextTheme =
+      document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    document.documentElement.dataset.theme = nextTheme;
+    localStorage.setItem("portfolio-theme", nextTheme);
+    updateThemeToggle(nextTheme);
+  });
+}
 
 if (hamburger) {
   hamburger.addEventListener("click", () => {
@@ -35,21 +59,13 @@ if (hamburger) {
 // Close menu on link click
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
-    // Only close the menu if we're on mobile (hamburger is visible)
     if (window.innerWidth <= 768) {
       navLinksContainer.style.display = "none";
     }
   });
 });
 
-// Typing animation for hero title
-const words = document.querySelectorAll(".word");
-words.forEach((word, index) => {
-  word.style.opacity = "0";
-  word.style.animation = `fadeInUp 0.6s ease forwards ${index * 0.15}s`;
-});
-
-// Add animation styles dynamically
+// Add animation keyframe dynamically
 const style = document.createElement("style");
 style.textContent = `
     @keyframes fadeInUp {
@@ -60,15 +76,6 @@ style.textContent = `
         to {
             opacity: 1;
             transform: translateY(0);
-        }
-    }
-
-    @keyframes pulse {
-        0%, 100% {
-            opacity: 1;
-        }
-        50% {
-            opacity: 0.5;
         }
     }
 `;
@@ -96,7 +103,7 @@ const observer = new IntersectionObserver((entries) => {
 document
   .querySelectorAll(
     ".section-title, .about-text, .project-card, .skill-category, .stat, " +
-      ".timeline-item, .education-item, .achievement-item, .contact-card",
+      ".timeline-item, .education-item, .contact-card",
   )
   .forEach((el, index) => {
     el.style.opacity = "0";
@@ -173,34 +180,6 @@ if (statsContainer) {
   statObserver.observe(statsContainer);
 }
 
-// Parallax effect on scroll. Keep this separate from the blob keyframe transform.
-const blobs = document.querySelectorAll(".blob");
-let parallaxFrame = null;
-
-function updateBlobParallax() {
-  const scrolled = window.scrollY;
-
-  blobs.forEach((blob) => {
-    const factor = Number(blob.dataset.parallaxFactor || 0.5);
-    blob.style.setProperty("--parallax-y", `${scrolled * factor}px`);
-  });
-
-  parallaxFrame = null;
-}
-
-function requestBlobParallaxUpdate() {
-  if (parallaxFrame === null) {
-    parallaxFrame = requestAnimationFrame(updateBlobParallax);
-  }
-}
-
-blobs.forEach((blob, index) => {
-  blob.dataset.parallaxFactor = index === 0 ? "0.5" : "-0.3";
-});
-
-requestBlobParallaxUpdate();
-window.addEventListener("scroll", requestBlobParallaxUpdate, { passive: true });
-
 // Add ripple effect on button click
 document.querySelectorAll(".btn").forEach((button) => {
   button.addEventListener("click", function (e) {
@@ -247,22 +226,6 @@ rippleStyle.textContent = `
 `;
 document.head.appendChild(rippleStyle);
 
-// Lazy load images (if any)
-if ("IntersectionObserver" in window) {
-  const imageObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.src = entry.target.dataset.src;
-        imageObserver.unobserve(entry.target);
-      }
-    });
-  });
-
-  document
-    .querySelectorAll("img[data-src]")
-    .forEach((img) => imageObserver.observe(img));
-}
-
 // Track user interactions for accessibility
 document.addEventListener("keydown", (e) => {
   if (e.key === "Tab") {
@@ -282,7 +245,6 @@ resumeDownloadLinks.forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
 
-    // Create a temporary anchor element to trigger the download
     const downloadLink = document.createElement("a");
     downloadLink.href = link.getAttribute("href");
     downloadLink.download = "CV_Suman_Phuyal_V3.pdf";
@@ -290,7 +252,6 @@ resumeDownloadLinks.forEach((link) => {
     downloadLink.click();
     document.body.removeChild(downloadLink);
 
-    // Track download with analytics (optional - can be used with Google Analytics, Mixpanel, etc.)
     if (typeof gtag !== "undefined") {
       gtag("event", "file_download", {
         file_name: "CV_Suman_Phuyal_V3.pdf",
@@ -298,34 +259,6 @@ resumeDownloadLinks.forEach((link) => {
       });
     }
 
-    // Optional: Log to console for testing
     console.log("Resume downloaded: CV_Suman_Phuyal_V3.pdf");
   });
 });
-
-// Add slide-in animation style
-const slideInStyle = document.createElement("style");
-slideInStyle.textContent = `
-  @keyframes slideInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-`;
-document.head.appendChild(slideInStyle);

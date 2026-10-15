@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      document.documentElement.dataset.theme =
+        localStorage.getItem("portfolio-theme") || "light";
+    </script>
     <title>Suman Phuyal | Backend Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -31,6 +35,14 @@
           <li><a href="#skills">Skills</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
+        <button
+          class="theme-toggle"
+          type="button"
+          aria-label="Switch to light mode"
+          aria-pressed="false"
+        >
+          <i class="fas fa-sun" aria-hidden="true"></i>
+        </button>
         <div class="hamburger">
           <span></span>
           <span></span>
@@ -72,8 +84,6 @@
         </div>
       </div>
       <div class="hero-background">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
       </div>
     </section>
 
@@ -92,11 +102,11 @@
               strong passion for backend development and scalable systems.
             </p>
             <p>
-              Currently working as a
+              I completed a six-month internship as a
               <span class="accent-purple">Python Developer Intern</span> at
-              ITtogether.com.au, I specialize in building robust REST APIs,
-              real-time communication systems, and data-driven applications
-              using Django, PostgreSQL, and modern DevOps tools.
+              ITtogether.com.au, where I specialized in building robust REST
+              APIs, real-time communication systems, and data-driven
+              applications using Django, PostgreSQL, and modern DevOps tools.
             </p>
             <p>
               My journey in tech is driven by curiosity and a desire to solve
@@ -132,8 +142,8 @@
               <h3>Python Developer Intern</h3>
               <p class="company">ITtogether.com.au</p>
               <p class="duration">
-                <i class="fas fa-calendar"></i> 2025 (1 Month) | Remote -
-                Australia
+                <i class="fas fa-calendar"></i> 2025 (6 Months) | Completed |
+                Remote - Australia
               </p>
               <ul class="experience-details">
                 <li>
