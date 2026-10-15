@@ -173,16 +173,33 @@ if (statsContainer) {
   statObserver.observe(statsContainer);
 }
 
-// Parallax effect on scroll
-window.addEventListener("scroll", () => {
-  const scrolled = window.scrollY;
-  const blobs = document.querySelectorAll(".blob");
+// Parallax effect on scroll. Keep this separate from the blob keyframe transform.
+const blobs = document.querySelectorAll(".blob");
+let parallaxFrame = null;
 
-  blobs.forEach((blob, index) => {
-    const speed = index === 0 ? 0.5 : -0.3;
-    blob.style.transform = `translate(0, ${scrolled * speed}px)`;
+function updateBlobParallax() {
+  const scrolled = window.scrollY;
+
+  blobs.forEach((blob) => {
+    const factor = Number(blob.dataset.parallaxFactor || 0.5);
+    blob.style.setProperty("--parallax-y", `${scrolled * factor}px`);
   });
+
+  parallaxFrame = null;
+}
+
+function requestBlobParallaxUpdate() {
+  if (parallaxFrame === null) {
+    parallaxFrame = requestAnimationFrame(updateBlobParallax);
+  }
+}
+
+blobs.forEach((blob, index) => {
+  blob.dataset.parallaxFactor = index === 0 ? "0.5" : "-0.3";
 });
+
+requestBlobParallaxUpdate();
+window.addEventListener("scroll", requestBlobParallaxUpdate, { passive: true });
 
 // Add ripple effect on button click
 document.querySelectorAll(".btn").forEach((button) => {

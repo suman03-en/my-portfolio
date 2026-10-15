@@ -145,14 +145,18 @@ body {
     height: 100%;
     top: 0;
     left: 0;
-    z-index: -1;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
 }
 
 .blob {
     position: absolute;
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    --parallax-y: 0px;
+    border-radius: 50%;
     opacity: 0.15;
-    animation: blob 7s infinite;
+    will-change: transform;
+    animation: blob 9s ease-in-out infinite;
 }
 
 .blob-1 {
@@ -175,17 +179,18 @@ body {
 
 @keyframes blob {
     0%, 100% {
-        transform: translate(0, 0) scale(1);
+        transform: translate3d(0, var(--parallax-y), 0) scale(1);
     }
     33% {
-        transform: translate(50px, -50px) scale(1.1);
+        transform: translate3d(50px, calc(var(--parallax-y) - 50px), 0) scale(1.1);
     }
     66% {
-        transform: translate(-50px, 50px) scale(0.9);
+        transform: translate3d(-50px, calc(var(--parallax-y) + 50px), 0) scale(0.9);
     }
 }
 
 .hero-content {
+    position: relative;
     z-index: 1;
     text-align: center;
     max-width: 900px;
@@ -1885,10 +1890,6 @@ body {
     opacity: 0.06;
 }
 
-.hero-background {
-    overflow: hidden;
-}
-
 .section-title {
     font-size: clamp(2rem, 4vw, 2.8rem);
     letter-spacing: 0.04em;
@@ -2216,10 +2217,16 @@ h3 {
 .experience::after,
 .education::after {
     background-image:
-        linear-gradient(135deg, transparent 0 48%, rgba(109, 0, 26, 0.12) 49% 50%, transparent 51%),
-        radial-gradient(circle at 20% 70%, rgba(109, 0, 26, 0.2), transparent 24rem);
-    background-size: 110px 110px, 100% 100%;
+        linear-gradient(135deg, transparent 0 48%, rgba(109, 0, 26, 0.12) 49% 50%, transparent 51%);
+    background-size: 110px 110px;
     animation-duration: 30s;
+}
+
+.about::after {
+    background-image:
+        linear-gradient(rgba(109, 0, 26, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(109, 0, 26, 0.08) 1px, transparent 1px);
+    background-size: 42px 42px;
 }
 
 .projects::after,
