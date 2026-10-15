@@ -5,22 +5,22 @@ A modern, minimal portfolio website showcasing backend development expertise wit
 ## 🎨 Design Philosophy
 
 - **Minimal & Modern**: Clean design focused on content and user experience
-- **Dark Theme**: Professional dark background (Deep Navy #0a0e27) reducing eye strain
-- **Vibrant Accents**: Cyan (#06b6d4) and Purple (#a855f7) for visual hierarchy and engagement
-- **Typography-Driven**: Space Grotesk font family for modern, tech-forward appearance
+- **Editorial Theme**: High-contrast black, burgundy, and white palette inspired by the uploaded color reference
+- **Structured Sections**: Stylish editorial cards, timelines, and grouped content below the hero
+- **Typography-Driven**: Black Ops One headings paired with Roboto Condensed body text for a cohesive developer-focused appearance
 - **Responsive**: Fully responsive design that works seamlessly on mobile, tablet, and desktop
 
 ## 🎯 Color Scheme
 
 ```
-Primary Background:  #0a0e27 (Deep Navy)
-Secondary Background: #141829
-Tertiary Background: #1a1f3a
-Accent Cyan:        #06b6d4 (Modern Tech Blue)
-Accent Purple:      #a855f7 (Creative Energy)
-Text Primary:       #f1f5f9 (Light Gray)
-Text Secondary:     #cbd5e1 (Medium Gray)
-Text Muted:         #94a3b8 (Subtle Gray)
+Primary Background:  #000000 (Black)
+Secondary Background: #111111
+Tertiary Background: #1c1c1c
+Primary Accent:      #6D001A (Burgundy)
+Secondary Accent:    #8A1538
+Text Primary:        #FFFFFF
+Text Secondary:      #E6E6E6
+Text Muted:          #A6A6A6
 ```
 
 ## 📁 Project Structure
@@ -30,7 +30,7 @@ my-portfolio/
 ├── index.html          # Main HTML structure & content
 ├── styles.css          # Complete styling with animations & responsive design
 ├── script.js           # Interactive features & smooth transitions
-├── profile-photo.svg    # Hero portrait asset (replace with a headshot if desired)
+├── suman_phuyal_photo.jpeg # Hero portrait asset
 └── README.md           # This file
 ```
 
@@ -56,33 +56,26 @@ my-portfolio/
 
 ### Sections Included
 
-1. **Hero** - Welcome statement with CTA buttons + Resume download
+1. **Hero** - Welcome statement with CTA buttons + resume download
 2. **About** - Personal introduction with statistics
 3. **Experience** - Timeline of work experience
 4. **Projects** - Featured projects with technology stack
 5. **Skills** - Technical arsenal categorized
-6. **Resume** - Professional resume preview and download section
-7. **Education** - Academic background
-8. **Contact** - Multiple ways to connect
+6. **Education** - Academic background
+7. **Contact** - Multiple ways to connect
 
 ## 📄 Resume Download Feature
 
-The portfolio includes multiple convenient ways to download your resume:
+The portfolio provides a single, prominent way to download your resume:
 
 ### Download Options
 
-- **Navbar Resume Button**: Fixed position in the navigation bar with download icon
-- **Hero CTA Button**: Prominent download button in the hero section
-- **Dedicated Resume Section**: Full-featured resume preview with:
-  - Professional file icon and description
-  - Highlighted resume contents (Education, Experience, Skills, Projects)
-  - Large download button with visual emphasis
-  - File metadata (format, last updated date)
+- **Hero CTA Button**: Prominent “Download my resume” button in the hero section
 
 ### How to Use
 
 1. Replace `CV_Suman_Phuyal_V3.pdf` with your actual resume file
-2. Both download links will automatically work if the file exists in the project root
+2. The download link will automatically work if the file exists in the project root
 3. Download tracking is built-in (optional Google Analytics integration)
 
 ## 💻 How to Use
@@ -129,4 +122,4 @@ All content is in `index.html`. Update sections for:
 
 **Portfolio for**: Suman Phuyal - Backend Developer
 **Version**: 1.0
-**Theme**: Dark Minimal with Cyan & Purple Accents
+**Theme**: Editorial Black, Burgundy & White

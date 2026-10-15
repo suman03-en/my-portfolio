@@ -83,19 +83,24 @@ const observerOptions = {
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      entry.target.style.animation = "fadeInUp 0.6s ease forwards";
+      entry.target.style.animationName = "fadeInUp";
+      entry.target.style.animationDuration = "0.6s";
+      entry.target.style.animationTimingFunction = "ease";
+      entry.target.style.animationFillMode = "forwards";
       observer.unobserve(entry.target);
     }
   });
 }, observerOptions);
 
-// Observe cards and items
+// Reveal content cards and section elements as they enter the viewport.
 document
   .querySelectorAll(
-    ".project-card, .skill-category, .stat, .education-item",
+    ".section-title, .about-text, .project-card, .skill-category, .stat, " +
+      ".timeline-item, .education-item, .achievement-item, .contact-card",
   )
-  .forEach((el) => {
+  .forEach((el, index) => {
     el.style.opacity = "0";
+    el.style.animationDelay = `${Math.min(index % 4, 3) * 90}ms`;
     observer.observe(el);
   });
 
@@ -124,13 +129,6 @@ function handleResize() {
 
 window.addEventListener("resize", handleResize);
 handleResize();
-
-// Add stagger effect to timeline items
-const timelineItems = document.querySelectorAll(".timeline-item");
-timelineItems.forEach((item, index) => {
-  item.style.opacity = "0";
-  item.style.animation = `fadeInUp 0.6s ease forwards ${0.2 + index * 0.2}s`;
-});
 
 // Counter animation for stats
 function animateCounter(element, target, duration = 2000) {
@@ -288,24 +286,6 @@ resumeDownloadLinks.forEach((link) => {
   });
 });
 
-// Optional: Add animation to resume preview when it comes into view
-const resumePreview = document.querySelector(".resume-preview");
-if (resumePreview) {
-  const resumeObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.animation = "slideInLeft 0.6s ease forwards";
-          resumeObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.2 },
-  );
-
-  resumeObserver.observe(resumePreview);
-}
-
 // Add slide-in animation style
 const slideInStyle = document.createElement("style");
 slideInStyle.textContent = `
@@ -332,21 +312,3 @@ slideInStyle.textContent = `
   }
 `;
 document.head.appendChild(slideInStyle);
-
-// Animate resume download section
-const resumeDownloadSection = document.querySelector(".resume-download");
-if (resumeDownloadSection) {
-  const downloadObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.animation = "slideInRight 0.6s ease forwards";
-          downloadObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.2 },
-  );
-
-  downloadObserver.observe(resumeDownloadSection);
-}
