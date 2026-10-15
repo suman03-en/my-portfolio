@@ -108,7 +108,7 @@ h3 {
     display: flex;
     list-style: none;
     gap: 1.5rem;
-    margin-left: 2.5rem;
+    margin-left: auto;
 }
 
 .nav-links a {
@@ -166,7 +166,7 @@ h3 {
     display: inline-flex;
     height: 2.25rem;
     justify-content: center;
-    margin-left: auto;
+    margin-left: 2rem;
     margin-right: 1rem;
     transition: background-color 0.25s ease, border-color 0.25s ease,
         color 0.25s ease, transform 0.25s ease;
