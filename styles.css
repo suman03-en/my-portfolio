@@ -1213,6 +1213,10 @@ h3 {
    ================================================================= */
 @media (max-width: 768px) {
     /* Navigation */
+    .nav-container {
+        justify-content: flex-start;
+    }
+
     .nav-links {
         display: none;
         flex-direction: column;
@@ -1232,6 +1236,10 @@ h3 {
 
     .hamburger {
         display: flex;
+    }
+
+    .theme-toggle {
+        margin-left: auto;
     }
 
     /* Hero */
