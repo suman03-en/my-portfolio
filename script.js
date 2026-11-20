@@ -1,11 +1,11 @@
-// Smooth navigation link highlighting
+// ─── Active nav link highlighting ────────────────────────────────
 const navLinks = document.querySelectorAll(".nav-links a");
 const sections = document.querySelectorAll("section");
 
 function updateActiveNav() {
   let current = "";
   sections.forEach((section) => {
-    const sectionTop = section.offsetTop - 100;
+    const sectionTop = section.offsetTop - 120;
     if (scrollY >= sectionTop) {
       current = section.getAttribute("id");
     }
@@ -21,152 +21,95 @@ function updateActiveNav() {
 
 window.addEventListener("scroll", updateActiveNav);
 
-// Hamburger menu toggle
-const hamburger = document.querySelector(".hamburger");
-const navLinksContainer = document.querySelector(".nav-links");
-const themeToggle = document.querySelector(".theme-toggle");
+// ─── Mobile menu toggle ─────────────────────────────────────────
+const navPill = document.querySelector(".nav-pill");
+const menuBtn = document.querySelector(".nav-menu-btn");
 
-function updateThemeToggle(theme) {
-  const isLight = theme === "light";
-  themeToggle.setAttribute(
-    "aria-label",
-    isLight ? "Switch to dark mode" : "Switch to light mode",
-  );
-  themeToggle.setAttribute("aria-pressed", String(isLight));
-  themeToggle.innerHTML = `<i class="fas fa-${isLight ? "moon" : "sun"}" aria-hidden="true"></i>`;
-}
+if (menuBtn) {
+  menuBtn.addEventListener("click", () => {
+    navPill.classList.toggle("menu-open");
+  });
 
-if (themeToggle) {
-  const currentTheme = document.documentElement.dataset.theme || "light";
-  updateThemeToggle(currentTheme);
-
-  themeToggle.addEventListener("click", () => {
-    const nextTheme =
-      document.documentElement.dataset.theme === "light" ? "dark" : "light";
-    document.documentElement.dataset.theme = nextTheme;
-    localStorage.setItem("portfolio-theme", nextTheme);
-    updateThemeToggle(nextTheme);
+  // Close menu when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!navPill.contains(e.target) && navPill.classList.contains("menu-open")) {
+      navPill.classList.remove("menu-open");
+    }
   });
 }
 
-if (hamburger) {
-  hamburger.addEventListener("click", () => {
-    navLinksContainer.style.display =
-      navLinksContainer.style.display === "flex" ? "none" : "flex";
-  });
-}
-
-// Close menu on link click
+// Close menu on link click (mobile)
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
-    if (window.innerWidth <= 768) {
-      navLinksContainer.style.display = "none";
-    }
+    navPill.classList.remove("menu-open");
   });
 });
 
-// Add animation keyframe dynamically
-const style = document.createElement("style");
-style.textContent = `
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-`;
-document.head.appendChild(style);
+// ─── Scroll-reveal animations ───────────────────────────────────
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationName = "fadeUp";
+        entry.target.style.animationDuration = "0.5s";
+        entry.target.style.animationTimingFunction =
+          "cubic-bezier(0.4, 0, 0.2, 1)";
+        entry.target.style.animationFillMode = "forwards";
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.06, rootMargin: "0px 0px -30px 0px" },
+);
 
-// Intersection Observer for fade-in animations
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: "0px 0px -50px 0px",
-};
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.style.animationName = "fadeInUp";
-      entry.target.style.animationDuration = "0.6s";
-      entry.target.style.animationTimingFunction = "ease";
-      entry.target.style.animationFillMode = "forwards";
-      observer.unobserve(entry.target);
-    }
-  });
-}, observerOptions);
-
-// Reveal content cards and section elements as they enter the viewport.
 document
   .querySelectorAll(
-    ".section-title, .about-text, .project-card, .skill-category, .stat, " +
-      ".timeline-item, .education-item, .contact-card",
+    ".tile-stat, .tile-exp, .tile-project, .tile-edu, " +
+      ".tile-approach, .cluster, .contact-chip, " +
+      ".section-label, .about-lead, .approach-heading",
   )
-  .forEach((el, index) => {
+  .forEach((el, i) => {
     el.style.opacity = "0";
-    el.style.animationDelay = `${Math.min(index % 4, 3) * 90}ms`;
-    observer.observe(el);
+    el.style.animationDelay = `${Math.min(i % 5, 4) * 70}ms`;
+    revealObserver.observe(el);
   });
 
-// Smooth scroll for buttons
+// ─── Smooth scroll for anchor links ─────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
     e.preventDefault();
     const target = document.querySelector(this.getAttribute("href"));
     if (target) {
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   });
 });
 
-// Mobile nav responsive
-function handleResize() {
-  if (window.innerWidth > 768) {
-    navLinksContainer.style.display = "flex";
-  } else {
-    navLinksContainer.style.display = "none";
-  }
-}
-
-window.addEventListener("resize", handleResize);
-handleResize();
-
-// Counter animation for stats
-function animateCounter(element, target, duration = 2000) {
+// ─── Counter animation for stat numbers ─────────────────────────
+function animateCounter(element, target, duration = 1600) {
   let start = 0;
   const suffix = element.textContent.replace(String(target), "");
   const increment = target / (duration / 16);
 
-  const updateCounter = () => {
+  const tick = () => {
     start += increment;
     if (start < target) {
       element.textContent = Math.floor(start) + suffix;
-      requestAnimationFrame(updateCounter);
+      requestAnimationFrame(tick);
     } else {
       element.textContent = target + suffix;
     }
   };
-
-  updateCounter();
+  tick();
 }
 
 const statObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        const statNumbers = entry.target.querySelectorAll(".stat-number");
-        statNumbers.forEach((stat) => {
-          const text = stat.textContent;
-          const number = parseInt(text);
-          if (!isNaN(number)) {
-            animateCounter(stat, number);
-          }
+        entry.target.querySelectorAll(".stat-num").forEach((el) => {
+          const num = parseInt(el.textContent);
+          if (!isNaN(num)) animateCounter(el, num);
         });
         statObserver.unobserve(entry.target);
       }
@@ -175,90 +118,35 @@ const statObserver = new IntersectionObserver(
   { threshold: 0.5 },
 );
 
-const statsContainer = document.querySelector(".about-stats");
-if (statsContainer) {
-  statObserver.observe(statsContainer);
-}
+const statTiles = document.querySelector(".stat-tiles");
+if (statTiles) statObserver.observe(statTiles);
 
-// Add ripple effect on button click
-document.querySelectorAll(".btn").forEach((button) => {
-  button.addEventListener("click", function (e) {
-    const ripple = document.createElement("span");
-    const rect = this.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
-    const x = e.clientX - rect.left - size / 2;
-    const y = e.clientY - rect.top - size / 2;
-
-    ripple.style.width = ripple.style.height = size + "px";
-    ripple.style.left = x + "px";
-    ripple.style.top = y + "px";
-    ripple.classList.add("ripple");
-
-    this.appendChild(ripple);
-
-    setTimeout(() => ripple.remove(), 600);
-  });
-});
-
-// Add ripple styles
-const rippleStyle = document.createElement("style");
-rippleStyle.textContent = `
-    .btn {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .ripple {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.5);
-        transform: scale(0);
-        animation: ripple-animation 0.6s ease-out;
-        pointer-events: none;
-    }
-
-    @keyframes ripple-animation {
-        to {
-            transform: scale(4);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(rippleStyle);
-
-// Track user interactions for accessibility
+// ─── Keyboard-nav accessibility ─────────────────────────────────
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Tab") {
-    document.body.classList.add("keyboard-nav");
-  }
+  if (e.key === "Tab") document.body.classList.add("keyboard-nav");
 });
-
 document.addEventListener("mousedown", () => {
   document.body.classList.remove("keyboard-nav");
 });
 
-// Track resume downloads
-const resumeDownloadLinks = document.querySelectorAll(
-  'a[href*="CV_Suman_Phuyal"][download]',
-);
-resumeDownloadLinks.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
+// ─── Resume download tracking ───────────────────────────────────
+document
+  .querySelectorAll('a[href*="CV_Suman_Phuyal"][download]')
+  .forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const dl = document.createElement("a");
+      dl.href = link.getAttribute("href");
+      dl.download = "CV_Suman_Phuyal_V3.pdf";
+      document.body.appendChild(dl);
+      dl.click();
+      document.body.removeChild(dl);
 
-    const downloadLink = document.createElement("a");
-    downloadLink.href = link.getAttribute("href");
-    downloadLink.download = "CV_Suman_Phuyal_V3.pdf";
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-    document.body.removeChild(downloadLink);
-
-    if (typeof gtag !== "undefined") {
-      gtag("event", "file_download", {
-        file_name: "CV_Suman_Phuyal_V3.pdf",
-        file_extension: "pdf",
-      });
-    }
-
-    console.log("Resume downloaded: CV_Suman_Phuyal_V3.pdf");
+      if (typeof gtag !== "undefined") {
+        gtag("event", "file_download", {
+          file_name: "CV_Suman_Phuyal_V3.pdf",
+          file_extension: "pdf",
+        });
+      }
+    });
   });
-});

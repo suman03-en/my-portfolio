@@ -3,15 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script>
-      document.documentElement.dataset.theme =
-        localStorage.getItem("portfolio-theme") || "light";
-    </script>
     <title>Suman Phuyal | Backend Developer</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Roboto+Condensed:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -21,89 +18,114 @@
     />
   </head>
   <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-      <div class="nav-container">
-        <div class="logo">
-          <a href="#home" class="logo-text" aria-label="Suman Phuyal">SP</a>
-        </div>
-        <ul class="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <button
-          class="theme-toggle"
-          type="button"
-          aria-label="Switch to light mode"
-          aria-pressed="false"
-        >
-          <i class="fas fa-sun" aria-hidden="true"></i>
-        </button>
-        <div class="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+    <!-- ============================================
+         Floating Pill Navigation
+         ============================================ -->
+    <nav class="nav-pill">
+      <a href="#home" class="nav-logo" aria-label="Suman Phuyal">SP</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Work</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
       </div>
+      <button class="nav-menu-btn" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-      <div class="container hero-layout">
-        <div class="hero-content">
-          <h1 class="hero-name">Suman Phuyal</h1>
-          <p class="eyebrow">Systems thinker · Builder · Problem solver</p>
-          <p class="hero-subtitle">
-            Electronics, Communication and Information Engineer focused on
-            scalable backend services, API design, and the intersection of AI,
-            software, hardware, and embedded systems.
+    <!-- ============================================
+         Hero — Bento Grid
+         ============================================ -->
+    <section id="home" class="hero-bento">
+      <div class="bento-grid hero-grid">
+        <!-- Main intro tile -->
+        <div class="tile tile-intro">
+          <p class="eyebrow">Backend Developer · ECE Engineer</p>
+          <h1>Suman<br />Phuyal</h1>
+          <p class="tagline">I engineer systems from the socket up.</p>
+          <p class="intro-sub">
+            Not just another web developer — I build from raw sockets to
+            production APIs. Electronics engineer by training, backend
+            architect by obsession.
           </p>
-          <div class="hero-cta">
-            <a href="#projects" class="btn btn-primary">View my work</a>
-            <a href="#contact" class="btn btn-secondary">Get in touch</a>
-            <a href="./CV_Suman_Phuyal_V3.pdf" download class="btn btn-resume">
-              <i class="fas fa-file-download"></i> Download my resume
-            </a>
-          </div>
-          <div class="scroll-indicator">
-            <span>Scroll to explore</span>
-            <i class="fas fa-arrow-down"></i>
-          </div>
         </div>
-        <div class="hero-portrait">
-          <div class="portrait-frame">
-            <img
-              src="./suman_phuyal_photo-transparent.png"
-              alt="Portrait of Suman Phuyal"
-            />
-          </div>
+
+        <!-- Portrait tile -->
+        <div class="tile tile-portrait">
+          <img
+            src="./suman_phuyal_photo-transparent.png"
+            alt="Portrait of Suman Phuyal"
+          />
         </div>
-      </div>
-      <div class="hero-background">
+
+        <!-- Currently tile (tagline) -->
+        <div class="tile tile-currently">
+          <p class="currently-label">Currently exploring</p>
+          <p class="currently-value">AI × Backend Systems</p>
+          <p class="currently-detail">Building intelligent APIs that learn and adapt</p>
+        </div>
+
+        <!-- Resume tile (compact action) -->
+        <a
+          href="./CV_Suman_Phuyal_V3.pdf"
+          download
+          class="tile tile-action tile-action--resume"
+        >
+          <div class="action-content">
+            <i class="fas fa-file-download"></i>
+            <span>Download Resume</span>
+          </div>
+          <i class="fas fa-arrow-down action-arrow"></i>
+        </a>
+
+        <!-- Status tile -->
+        <div class="tile tile-status">
+          <span class="status-dot"></span>
+          <span>Open to opportunities · Kathmandu, Nepal</span>
+        </div>
       </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+    <!-- ============================================
+         Marquee — Skills Ticker
+         ============================================ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Python</span><span>Django</span><span>REST APIs</span>
+        <span>PostgreSQL</span><span>Redis</span><span>Docker</span>
+        <span>WebSockets</span><span>Django Channels</span><span>React</span>
+        <span>Celery</span><span>Git</span><span>C/C++</span>
+        <span>Socket Programming</span><span>HTTP Internals</span>
+        <span>NumPy</span><span>Pandas</span>
+        <!-- Duplicate for seamless loop -->
+        <span>Python</span><span>Django</span><span>REST APIs</span>
+        <span>PostgreSQL</span><span>Redis</span><span>Docker</span>
+        <span>WebSockets</span><span>Django Channels</span><span>React</span>
+        <span>Celery</span><span>Git</span><span>C/C++</span>
+        <span>Socket Programming</span><span>HTTP Internals</span>
+        <span>NumPy</span><span>Pandas</span>
+      </div>
+    </div>
+
+    <!-- ============================================
+         About + My Approach
+         ============================================ -->
+    <section id="about" class="section-about">
       <div class="container">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-content">
-          <div class="about-text">
-            <p>
+        <div class="about-layout">
+          <div class="about-text-block">
+            <h2 class="section-label">About</h2>
+            <p class="about-lead">
               I'm an
-              <span class="accent-cyan"
-                >Electronics, Communication & Information Engineering</span
-              >
+              <strong>Electronics, Communication &amp; Information Engineering</strong>
               student at the Institute of Engineering, Thapathali Campus, with a
               strong passion for backend development and scalable systems.
             </p>
             <p>
               I completed a six-month internship as a
-              <span class="accent-purple">Python Developer Intern</span> at
+              <strong>Python Developer Intern</strong> at
               ITtogether.com.au, where I specialized in building robust REST
               APIs, real-time communication systems, and data-driven
               applications using Django, PostgreSQL, and modern DevOps tools.
@@ -113,39 +135,70 @@
               complex problems through elegant code.
             </p>
           </div>
-          <div class="about-stats">
-            <div class="stat">
-              <div class="stat-number">3+</div>
-              <div class="stat-label">Projects Built</div>
+          <div class="stat-tiles">
+            <div class="tile tile-stat">
+              <span class="stat-num">3+</span>
+              <span class="stat-lbl">Projects<br />Built</span>
             </div>
-            <div class="stat">
-              <div class="stat-number">1+</div>
-              <div class="stat-label">Years Experience</div>
+            <div class="tile tile-stat">
+              <span class="stat-num">1+</span>
+              <span class="stat-lbl">Years<br />Experience</span>
             </div>
-            <div class="stat">
-              <div class="stat-number">4</div>
-              <div class="stat-label">Frameworks Mastered</div>
+            <div class="tile tile-stat">
+              <span class="stat-num">4</span>
+              <span class="stat-lbl">Frameworks<br />Mastered</span>
             </div>
+          </div>
+        </div>
+
+        <!-- My Approach — what sets me apart -->
+        <div class="approach-grid">
+          <h3 class="approach-heading">What sets me apart</h3>
+          <div class="tile tile-approach">
+            <div class="approach-icon"><i class="fas fa-microchip"></i></div>
+            <h4>Hardware Meets Software</h4>
+            <p>
+              ECE background means I understand systems end-to-end — from
+              circuit-level signals to cloud-deployed microservices. I don't just
+              call APIs, I know what happens underneath.
+            </p>
+          </div>
+          <div class="tile tile-approach">
+            <div class="approach-icon"><i class="fas fa-wrench"></i></div>
+            <h4>Build to Understand</h4>
+            <p>
+              I wrote an HTTP parser and web server from scratch — not because I
+              had to, but because I needed to know how bytes become web pages.
+              That depth shapes every line I ship.
+            </p>
+          </div>
+          <div class="tile tile-approach">
+            <div class="approach-icon"><i class="fas fa-layer-group"></i></div>
+            <h4>Systems Over Features</h4>
+            <p>
+              I think in architectures, not screens. Database design, caching
+              strategies, real-time protocols — the invisible work that makes
+              applications actually scale.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
+    <!-- ============================================
+         Experience — Indexed Cards
+         ============================================ -->
+    <section id="experience" class="section-experience">
       <div class="container">
-        <h2 class="section-title">Experience</h2>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-marker"></div>
-            <div class="timeline-content">
+        <h2 class="section-label">Experience</h2>
+        <div class="exp-cards">
+          <div class="tile tile-exp">
+            <span class="exp-index">01</span>
+            <div class="exp-body">
               <h3>Python Developer Intern</h3>
-              <p class="company">ITtogether.com.au</p>
-              <p class="duration">
-                <i class="fas fa-calendar"></i> 2025 (6 Months) | Completed |
-                Remote - Australia
-              </p>
-              <ul class="experience-details">
+              <p class="exp-company">ITtogether.com.au</p>
+              <p class="exp-meta">2025 · 6 Months · Remote — Australia</p>
+              <ul class="exp-list">
                 <li>
                   Developed and delivered software applications using Django
                   following industry best practices
@@ -159,23 +212,21 @@
                   iterative development
                 </li>
               </ul>
-              <div class="tech-stack">
-                <span class="tech-tag">Django</span>
-                <span class="tech-tag">REST API</span>
-                <span class="tech-tag">PostgreSQL</span>
+              <div class="tag-row">
+                <span class="tag">Django</span>
+                <span class="tag">REST API</span>
+                <span class="tag">PostgreSQL</span>
               </div>
             </div>
           </div>
 
-          <div class="timeline-item">
-            <div class="timeline-marker"></div>
-            <div class="timeline-content">
+          <div class="tile tile-exp">
+            <span class="exp-index">02</span>
+            <div class="exp-body">
               <h3>Backend Development Journey</h3>
-              <p class="company">Self-Driven Learning</p>
-              <p class="duration">
-                <i class="fas fa-calendar"></i> 2024 - Present
-              </p>
-              <ul class="experience-details">
+              <p class="exp-company">Self-Driven Learning</p>
+              <p class="exp-meta">2024 — Present</p>
+              <ul class="exp-list">
                 <li>
                   Mastered Django, Django REST Framework, and Django Channels
                   for WebSocket communication
@@ -189,10 +240,10 @@
                   implementation
                 </li>
               </ul>
-              <div class="tech-stack">
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">Docker</span>
-                <span class="tech-tag">Redis</span>
+              <div class="tag-row">
+                <span class="tag">Python</span>
+                <span class="tag">Docker</span>
+                <span class="tag">Redis</span>
               </div>
             </div>
           </div>
@@ -200,291 +251,238 @@
       </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
+    <!-- ============================================
+         Projects — Featured + Grid
+         ============================================ -->
+    <section id="projects" class="section-projects">
       <div class="container">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="projects-grid">
-          <!-- Project 1 -->
-          <div class="project-card">
-            <div class="project-header accent-purple">
-              <i class="fab fa-discord"></i>
-            </div>
-            <h3>Teacher2Discord</h3>
-            <p class="project-subtitle">Class Announcement Platform</p>
-            <p class="project-description">
-              Broadcast class announcements, assignments, and files directly
-              to student Discord servers using webhooks.
-            </p>
-            <div class="project-tech">
-              <span>Django</span>
-              <span>PostgreSQL</span>
-              <span>Discord Webhooks</span>
-            </div>
-            <a
-              href="https://teacher2discord.onrender.com"
-              class="project-status project-link accent-purple"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View live website
-              <i class="fas fa-arrow-up-right-from-square"></i>
-            </a>
-          </div>
+        <h2 class="section-label">Projects</h2>
 
-          <!-- Project 2 -->
-          <div class="project-card">
-            <div class="project-header accent-cyan">
-              <i class="fas fa-users"></i>
+        <!-- Featured project (full-width) -->
+        <div class="tile tile-project tile-project--featured">
+          <div class="proj-icon"><i class="fab fa-discord"></i></div>
+          <div class="proj-body">
+            <h3>Teacher2Discord</h3>
+            <p class="proj-sub">Class Announcement Platform</p>
+            <p class="proj-desc">
+              Broadcast class announcements, assignments, and files directly
+              to student Discord servers using webhooks. Solves the real problem
+              of fragmented class communication.
+            </p>
+            <div class="tag-row">
+              <span class="tag">Django</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">Discord Webhooks</span>
             </div>
+          </div>
+          <a
+            href="https://teacher2discord.onrender.com"
+            class="proj-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Live <i class="fas fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+
+        <!-- 3-column project row -->
+        <div class="projects-row">
+          <div class="tile tile-project">
+            <div class="proj-icon"><i class="fas fa-users"></i></div>
             <h3>ConnectHub</h3>
-            <p class="project-subtitle">Social Networking Platform</p>
-            <p class="project-description">
+            <p class="proj-sub">Social Networking Platform</p>
+            <p class="proj-desc">
               Full-featured social platform with real-time chat, user profiles,
               and follow/unfollow system. Optimized database queries for
               performance at scale.
             </p>
-            <div class="project-tech">
-              <span>Django Channels</span>
-              <span>WebSocket</span>
-              <span>Redis</span>
-              <span>PostgreSQL</span>
-              <span>Docker</span>
+            <div class="tag-row">
+              <span class="tag">Django Channels</span>
+              <span class="tag">WebSocket</span>
+              <span class="tag">Redis</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">Docker</span>
             </div>
-            <div class="project-status accent-cyan">Active</div>
+            <div class="proj-badge badge-active">Active</div>
           </div>
 
-          <!-- Project 3 -->
-          <div class="project-card">
-            <div class="project-header accent-purple">
-              <i class="fas fa-graduation-cap"></i>
-            </div>
+          <div class="tile tile-project">
+            <div class="proj-icon"><i class="fas fa-graduation-cap"></i></div>
             <h3>Gradus</h3>
-            <p class="project-subtitle">Internal Marks Evaluation System</p>
-            <p class="project-description">
+            <p class="proj-sub">Internal Marks Evaluation System</p>
+            <p class="proj-desc">
               Classroom management system enabling teachers to assign tasks and
               grade submissions with real-time student progress tracking and
               role-based access.
             </p>
-            <div class="project-tech">
-              <span>Django</span>
-              <span>REST API</span>
-              <span>React</span>
-              <span>PostgreSQL</span>
+            <div class="tag-row">
+              <span class="tag">Django</span>
+              <span class="tag">REST API</span>
+              <span class="tag">React</span>
+              <span class="tag">PostgreSQL</span>
             </div>
-            <div class="project-status accent-purple">Live</div>
+            <div class="proj-badge badge-live">Live</div>
           </div>
 
-          <!-- Project 4 -->
-          <div class="project-card">
-            <div class="project-header accent-cyan">
-              <i class="fas fa-server"></i>
-            </div>
+          <div class="tile tile-project">
+            <div class="proj-icon"><i class="fas fa-server"></i></div>
             <h3>Custom Web Server</h3>
-            <p class="project-subtitle">HTTP Parser & Config Tokenizer</p>
-            <p class="project-description">
+            <p class="proj-sub">HTTP Parser &amp; Config Tokenizer</p>
+            <p class="proj-desc">
               Built HTTP parser from scratch and implemented configuration file
               tokenizer with custom lexer. Deep understanding of socket
-              programming.
+              programming and protocol internals.
             </p>
-            <div class="project-tech">
-              <span>Python</span>
-              <span>Sockets</span>
-              <span>RegEx</span>
-              <span>HTTP</span>
+            <div class="tag-row">
+              <span class="tag">Python</span>
+              <span class="tag">Sockets</span>
+              <span class="tag">RegEx</span>
+              <span class="tag">HTTP</span>
             </div>
-            <div class="project-status accent-cyan">2024</div>
+            <div class="proj-badge badge-year">2024</div>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
+    <!-- ============================================
+         Skills — Categorised Tag Clusters
+         ============================================ -->
+    <section id="skills" class="section-skills">
       <div class="container">
-        <h2 class="section-title">Technical Arsenal</h2>
-        <p class="section-intro">
+        <h2 class="section-label">Technical Arsenal</h2>
+        <p class="section-desc">
           A focused toolkit for building dependable, scalable, and maintainable
           web applications.
         </p>
-        <div class="skills-grid">
-          <div class="skill-category">
-            <div class="skill-category-heading">
-              <span class="skill-icon"><i class="fas fa-code"></i></span>
-              <div>
-                <p class="skill-kicker">01 / Core</p>
-                <h3>Languages</h3>
-              </div>
-            </div>
-            <div class="skill-list">
-              <div class="skill-item">Python</div>
-              <div class="skill-item">JavaScript</div>
-              <div class="skill-item">SQL</div>
-              <div class="skill-item">C/C++</div>
-              <div class="skill-item">HTML/CSS</div>
+        <div class="skills-clusters">
+          <div class="cluster">
+            <h3><span class="cluster-num">01</span> Languages</h3>
+            <div class="tag-row">
+              <span class="tag">Python</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">SQL</span>
+              <span class="tag">C/C++</span>
+              <span class="tag">HTML/CSS</span>
             </div>
           </div>
-
-          <div class="skill-category">
-            <div class="skill-category-heading">
-              <span class="skill-icon"><i class="fas fa-cube"></i></span>
-              <div>
-                <p class="skill-kicker">02 / Build</p>
-                <h3>Frameworks</h3>
-              </div>
-            </div>
-            <div class="skill-list">
-              <div class="skill-item">Django</div>
-              <div class="skill-item">Django Channels</div>
-              <div class="skill-item">Django REST Framework</div>
-              <div class="skill-item">Celery</div>
-              <div class="skill-item">React</div>
+          <div class="cluster">
+            <h3><span class="cluster-num">02</span> Frameworks</h3>
+            <div class="tag-row">
+              <span class="tag">Django</span>
+              <span class="tag">Django Channels</span>
+              <span class="tag">Django REST Framework</span>
+              <span class="tag">Celery</span>
+              <span class="tag">React</span>
             </div>
           </div>
-
-          <div class="skill-category">
-            <div class="skill-category-heading">
-              <span class="skill-icon"><i class="fas fa-wrench"></i></span>
-              <div>
-                <p class="skill-kicker">03 / Ship</p>
-                <h3>Tools & DevOps</h3>
-              </div>
-            </div>
-            <div class="skill-list">
-              <div class="skill-item">Docker</div>
-              <div class="skill-item">PostgreSQL</div>
-              <div class="skill-item">Redis</div>
-              <div class="skill-item">Git/GitHub</div>
-              <div class="skill-item">VS Code</div>
+          <div class="cluster">
+            <h3><span class="cluster-num">03</span> Tools &amp; DevOps</h3>
+            <div class="tag-row">
+              <span class="tag">Docker</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">Redis</span>
+              <span class="tag">Git/GitHub</span>
+              <span class="tag">VS Code</span>
             </div>
           </div>
-
-          <div class="skill-category">
-            <div class="skill-category-heading">
-              <span class="skill-icon"><i class="fas fa-brain"></i></span>
-              <div>
-                <p class="skill-kicker">04 / Explore</p>
-                <h3>ML & Data</h3>
-              </div>
-            </div>
-            <div class="skill-list">
-              <div class="skill-item">NumPy</div>
-              <div class="skill-item">Pandas</div>
-              <div class="skill-item">Matplotlib</div>
-              <div class="skill-item">Data Science</div>
+          <div class="cluster">
+            <h3><span class="cluster-num">04</span> ML &amp; Data</h3>
+            <div class="tag-row">
+              <span class="tag">NumPy</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">Matplotlib</span>
+              <span class="tag">Data Science</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Education -->
-    <section id="education" class="education">
+    <!-- ============================================
+         Education — Compact Cards
+         ============================================ -->
+    <section id="education" class="section-education">
       <div class="container">
-        <h2 class="section-title">Education</h2>
-        <div class="education-list">
-          <div class="education-item">
-            <div class="education-icon accent-cyan">
+        <h2 class="section-label">Education</h2>
+        <div class="edu-cards">
+          <div class="tile tile-edu">
+            <div class="edu-icon">
               <i class="fas fa-graduation-cap"></i>
             </div>
             <div>
               <h3>
-                Bachelor of Electronics, Communication & Information
+                Bachelor of Electronics, Communication &amp; Information
                 Engineering
               </h3>
-              <p class="education-institute">
+              <p class="edu-place">
                 Institute of Engineering, Thapathali Campus
               </p>
-              <p class="education-duration">
-                2023 - 2027 (Expected) | Kathmandu, Nepal
-              </p>
+              <p class="edu-meta">2023 — 2027 (Expected) · Kathmandu, Nepal</p>
             </div>
           </div>
-
-          <div class="education-item">
-            <div class="education-icon accent-purple">
+          <div class="tile tile-edu">
+            <div class="edu-icon edu-icon--alt">
               <i class="fas fa-book"></i>
             </div>
             <div>
               <h3>Higher Secondary (+2 Science)</h3>
-              <p class="education-institute">
-                Xavier International College | CGPA: 3.67
-              </p>
-              <p class="education-duration">
-                2021 - 2023 | Kathmandu, Nepal
-              </p>
+              <p class="edu-place">Xavier International College · CGPA: 3.67</p>
+              <p class="edu-meta">2021 — 2023 · Kathmandu, Nepal</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-      <div class="container">
-        <h2 class="section-title">Let's Connect</h2>
-        <p class="contact-subtitle">
+    <!-- ============================================
+         Contact — Full-bleed CTA
+         ============================================ -->
+    <section id="contact" class="section-contact">
+      <div class="container contact-inner">
+        <h2 class="contact-heading">
+          Let's build<br />something great.
+        </h2>
+        <p class="contact-sub">
           Interested in collaborating or discussing backend architecture? Let's
           talk!
         </p>
-
-        <div class="contact-options">
-          <a href="tel:+977-9861840424" class="contact-card">
-            <div class="contact-icon accent-cyan">
-              <i class="fas fa-phone"></i>
-            </div>
-            <h3>Phone</h3>
-            <p>+977-9861840424</p>
+        <div class="contact-links">
+          <a href="tel:+977-9861840424" class="contact-chip">
+            <i class="fas fa-phone"></i>
+            <span>+977-9861840424</span>
           </a>
-
-          <a href="mailto:sfuyal59@gmail.com" class="contact-card">
-            <div class="contact-icon accent-purple">
-              <i class="fas fa-envelope"></i>
-            </div>
-            <h3>Email</h3>
-            <p>sfuyal59@gmail.com</p>
+          <a href="mailto:sfuyal59@gmail.com" class="contact-chip">
+            <i class="fas fa-envelope"></i>
+            <span>sfuyal59@gmail.com</span>
           </a>
-
           <a
             href="https://linkedin.com/in/suman-phuyal"
             target="_blank"
-            class="contact-card"
+            class="contact-chip"
           >
-            <div class="contact-icon accent-cyan">
-              <i class="fab fa-linkedin"></i>
-            </div>
-            <h3>LinkedIn</h3>
-            <p>suman-phuyal</p>
+            <i class="fab fa-linkedin"></i>
+            <span>LinkedIn</span>
           </a>
-
           <a
             href="https://github.com/suman03-en"
             target="_blank"
-            class="contact-card"
+            class="contact-chip"
           >
-            <div class="contact-icon accent-purple">
-              <i class="fab fa-github"></i>
-            </div>
-            <h3>GitHub</h3>
-            <p>suman03-en</p>
+            <i class="fab fa-github"></i>
+            <span>GitHub</span>
           </a>
         </div>
-
-        <div class="cta-footer">
-          <p>Always open to interesting projects and conversations</p>
-        </div>
+        <p class="contact-footnote">
+          Always open to interesting projects and conversations
+        </p>
       </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
       <div class="container">
-        <p>
-          &copy; 2026 Suman Phuyal. Crafted with
-          <span class="accent-purple">creativity</span> and
-          <span class="accent-cyan">code</span>.
-        </p>
+        <p>&copy; 2026 Suman Phuyal — Crafted with creativity and code.</p>
       </div>
     </footer>
 
